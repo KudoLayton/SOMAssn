@@ -21,6 +21,12 @@
     <ClCompile Include="game.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="som.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="som2d.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -30,6 +36,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="jokeboxhelper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="som.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="som2d.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
