@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainGame", "MainGame\MainGame.vcxproj", "{A8110F32-39DE-4A3F-9161-2DC62C5E55C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF} = {38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jokebox v3.0 [ENGINE]", "Jokebox\Jokebox.vcxproj", "{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8110F32-39DE-4A3F-9161-2DC62C5E55C7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A8110F32-39DE-4A3F-9161-2DC62C5E55C7}.Debug|Win32.Build.0 = Debug|Win32
+		{A8110F32-39DE-4A3F-9161-2DC62C5E55C7}.Release|Win32.ActiveCfg = Release|Win32
+		{A8110F32-39DE-4A3F-9161-2DC62C5E55C7}.Release|Win32.Build.0 = Release|Win32
+		{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}.Debug|Win32.Build.0 = Debug|Win32
+		{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}.Release|Win32.ActiveCfg = Release|Win32
+		{38ED498E-38A6-48B3-BDF5-F7B660EA4BFF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
