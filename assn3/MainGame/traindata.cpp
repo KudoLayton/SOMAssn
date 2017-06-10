@@ -1,6 +1,7 @@
 #include <fstream>
 #include "traindata.h"
 
+Data *Data::globalData = NULL;
 Data::somData::somData(float *input, int label): input(input), label(label) {
 	
 }
@@ -9,7 +10,7 @@ Data::somData::~somData() {
 	delete input;
 }
 
-Data::Data(const char* inputFile, const char* labelFile, int inputNum, int labelNum) {
+Data::Data(const char* inputFile, const char* labelFile, int inputNum, int labelNum): inputNum(inputNum), labelNum(labelNum) {
 	std::fstream iStream(inputFile, std::ios_base::in);
 	std::fstream lStream(labelFile, std::ios_base::in);
 	int cnt = 0;
@@ -40,7 +41,9 @@ Data::Data(const char* inputFile, const char* labelFile, int inputNum, int label
 			testData.push_back(newData);
 			break;
 		}
+		cnt++;
 	}
+	globalData = this;
 }
 
 Data::~Data() {

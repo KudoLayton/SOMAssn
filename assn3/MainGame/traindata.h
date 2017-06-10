@@ -2,6 +2,9 @@
 #include <vector>
 class Data {
 public:
+	static Data* globalData;
+	int inputNum;
+	int labelNum;
 	class somData {
 	public:
 		somData(float *input, int label);
@@ -14,6 +17,4 @@ public:
 	std::vector<somData *> trainData;
 	std::vector<somData *> valiData;
 	std::vector<somData *> testData;
-private:
-		
 };

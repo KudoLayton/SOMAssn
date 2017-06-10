@@ -1,7 +1,8 @@
 #include <vector>
 #include <cmath>
 #include "som.h"
-
+#include "traindata.h"
+SOM* SOM::globalSOM = NULL;
 SOM::SOM() {
 
 }
@@ -96,7 +97,7 @@ float SOM::learning(int i, int winner, int dim, int t) {
 void SOM::resetLabel() {
 	for (unsigned int i = 0; i < label.size(); i++) {
 		int *thisLabel = label[i];
-		for (unsigned int j = 0; j < out; j++) {
+		for (int j = 0; j < out; j++) {
 			thisLabel[i] = 0;
 		}
 	}
@@ -109,4 +110,5 @@ void SOM::Labeling(float *trainData, int thisLabel) {
 			label[i][thisLabel]++;
 		}
 	}
+	total++;
 }

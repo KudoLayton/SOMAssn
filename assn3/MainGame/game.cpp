@@ -21,24 +21,36 @@
 #include "jokeboxhelper.h"
 #include "game.h"
 #include "som2d.h"
+#include "traindata.h"
 #include <ctime>
+int t;
 void initialize()
 {
 	srand((unsigned int)time(NULL));
-	SOM2D* som2d = new SOM2D(13, 5, 3, 5, 5, 0.01f, 3);
+	new SOM2D(13, 10, 3, 10, 10, 4, 0.01f);
+	new	Data("Wine Input.asc", "Wine Desired.asc", 13, 3);
+//	game_set_cell_count(5, 5);
+	t = 1;
 }
 
 void update(GAMETIME gametime)
 {
-	SOM2D& som = *SOM2D::globalSOM2D;
+	SOM& som = *SOM::globalSOM;
+	Data& data = *Data::globalData;
+	som.learnData(data, t);
+	som.resetLabel();
+	for (unsigned int i = 0; i < data.trainData.size(); i++) {
+		som.Labeling(data.trainData[i]->input, data.trainData[i]->label);
+	}
+	t++;
 }
 
 void draw(GAMETIME gametime)
 {
 	draw_begin();
-	draw_clear(WHITE);
-
+	draw_clear(BLACK);
+	SOM::globalSOM->drawMap();
 	// TODO: 게임 화면에 출력할 것을 작성.
-	
+	//draw_charc(' ', 2, 2, WHITE, WHITE);	
 	draw_end();
 }
