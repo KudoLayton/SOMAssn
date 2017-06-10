@@ -12,23 +12,25 @@
  *					iss300@postech.ac.kr					*
  *															*
  *----------------------------------------------------------*/
-
+#ifndef JOKEBOX_LEVEL_A
 #define JOKEBOX_LEVEL_A			// TODO: 사용하고자 하는 레벨의 주석을 해제
 //#define JOKEBOX_LEVEL_B
+#endif
 
 #include "jokebox.h"
 #include "jokeboxhelper.h"
 #include "game.h"
-
+#include "som2d.h"
+#include <ctime>
 void initialize()
 {
-	// TODO: 게임이 최초로 시작되었을 때 초기화할 것을 작성.
-	//		ex) 캐릭터의 처음 위치 세팅, 변수값 초기화, 텍스처/사운드 불러오기..
+	srand((unsigned int)time(NULL));
+	SOM2D* som2d = new SOM2D(13, 5, 3, 5, 5, 0.01f, 3);
 }
 
 void update(GAMETIME gametime)
 {
-	
+	SOM2D& som = *SOM2D::globalSOM2D;
 }
 
 void draw(GAMETIME gametime)

@@ -101,10 +101,11 @@ if exist "$(ProjectDir)Content" xcopy "$(ProjectDir)Content" "$(OutDir)Content" 
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="game.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="som.cpp" />
     <ClCompile Include="som2d.cpp" />
+    <ClCompile Include="traindata.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -112,6 +113,7 @@ if exist "$(ProjectDir)Content" xcopy "$(ProjectDir)Content" "$(OutDir)Content" 
     <ClInclude Include="jokeboxhelper.h" />
     <ClInclude Include="som.h" />
     <ClInclude Include="som2d.h" />
+    <ClInclude Include="traindata.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jokebox\Jokebox.vcxproj">

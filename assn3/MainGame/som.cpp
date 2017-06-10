@@ -6,39 +6,37 @@ SOM::SOM() {
 
 }
 
-SOM::SOM(int x, int y, int out, float T1, float T2, float nei, float sig): out(out), T1(T1), T2(T2), nei(nei), sig(sig) {
+SOM::SOM(int x, int y, int out, float T1, float T2, float nei, float sig):x(x), y(y), out(out), T1(T1), T2(T2), nei(nei), sig(sig) {
 	for (int i = 0; i < y; i++) {
-		std::vector<float> *newWeight = new std::vector<float>;
-		std::vector<float> *newOut = new std::vector<float>;
-		std::vector<float>& thisWeight = *newWeight;
-		std::vector<float>& thisOut = *newOut;
-		for (int j = 0; j < x; j++) {
-			thisWeight.push_back((float)std::rand() / RAND_MAX);
-		}
+		float *newWeight = new float[x];
+		int *newLabel = new int[out];
 
+		for (int j = 0; j < x; j++) {
+			newWeight[j] = (float)std::rand() / RAND_MAX;
+		}
+		
 		for (int j = 0; j < out; j++) {
-			thisOut.push_back(0);
+			newLabel[j] = 0;
 		}
 		weight.push_back(newWeight);
+		output.push_back(0);
+		label.push_back(newLabel);
 	}
 }
 
 SOM::~SOM() {
-	int y = weight.size();
-
 	for (int i = 0; i < y; i++) {
 		delete weight[i];
+		delete label[i];
 	}
 }
 
 
-int SOM::subLearn(std::vector<float>& trainData, int dim, int t) {
+int SOM::subLearn(float* trainData, int dim, int t) {
 	float* d = new float[weight.size()];
-	int y = weight.size();
-	int x = weight[0]->size();
 	for (int i = 0; i < y; i++) {
 		float sum = 0;
-		std::vector<float> &thisWeight = *weight[i];
+		float *thisWeight = weight[i];
 		for (int j = 0; j < x; j++) {
 			sum += powf(thisWeight[j] - trainData[j], 2);
 		}
@@ -56,7 +54,7 @@ int SOM::subLearn(std::vector<float>& trainData, int dim, int t) {
 
 	//std::vector<float> &winnerWeight = *weight[winner];
 	for (int i = 0; i < y; i++) {
-		std::vector<float> &thisWeight = *weight[i];
+		float *thisWeight = weight[i];
 		for (int j = 0; j < x; j++) {
 			thisWeight[j] = thisWeight[j] + nei * expf(- t / T2) * learning(i, winner, dim, t) * (trainData[j] - thisWeight[j]);
 		}
@@ -65,13 +63,10 @@ int SOM::subLearn(std::vector<float>& trainData, int dim, int t) {
 }
 
 
-void SOM::process(std::vector<float> &inputData) {
-	const int y = weight.size();
-	const int x = weight[0]->size();
-	
+void SOM::process(float *inputData) {
 	for (int i = 0; i < y; i++) {
 		float sum = 0;
-		std::vector<float> &thisWeight = *weight[i];
+		float* thisWeight = weight[i];
 		for (int j = 0; j < x; j++) {
 			sum += inputData[j] * thisWeight[j];
 		}
@@ -100,18 +95,18 @@ float SOM::learning(int i, int winner, int dim, int t) {
 
 void SOM::resetLabel() {
 	for (unsigned int i = 0; i < label.size(); i++) {
-		std::vector<int> & thisLabel = *label[i];
-		for (unsigned int j = 0; j < thisLabel.size(); j++) {
+		int *thisLabel = label[i];
+		for (unsigned int j = 0; j < out; j++) {
 			thisLabel[i] = 0;
 		}
 	}
 }
 
-void SOM::Labeling(std::vector<float> &trainData, std::vector<int> Label) {
+void SOM::Labeling(float *trainData, int thisLabel) {
 	process(trainData);
 	for (unsigned int i = 0; i < output.size(); i++) {
 		if (output[i]) {
-			label[i]->operator[](Label[i])++;
+			label[i][thisLabel]++;
 		}
 	}
 }
