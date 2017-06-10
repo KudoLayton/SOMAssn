@@ -28,8 +28,7 @@ void initialize()
 
 void update(GAMETIME gametime)
 {
-	// TODO: 게임 화면이 출력되기 전에 필요한 연산들을 작성.
-	//		ex) 시간을 측정해서 캐릭터의 위치 변경..
+	
 }
 
 void draw(GAMETIME gametime)

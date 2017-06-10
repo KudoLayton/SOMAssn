@@ -3,8 +3,8 @@
 
 class SOM2D:public SOM {
 public:
-	SOM2D(int x, int n, float T1, float T2, float nei);
-	virtual int learn(std::vector<float> &trainData);
+	SOM2D(int x, int n, int out, float T1, float T2, float nei, float sig);
+	virtual int learn(std::vector<float> &trainData, int t);
 	virtual void drawMap();
 
 private:
