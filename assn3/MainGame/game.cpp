@@ -29,7 +29,7 @@ float correctRate;
 void initialize()
 {
 	srand((unsigned int)time(NULL));
-	new SOM1D(2, 400, 1, 1000, 1000, 0.5f, 40);
+	new SOM1D(2, 400, 1, 100, 100, 0.5f, 40);
 	new	Data("H input.txt", "H output.txt", 2, 1);
 	game_set_cell_count(50, 50);
 	t = 1;
