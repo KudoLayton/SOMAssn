@@ -10,11 +10,13 @@ public:
 	~SOM();
 	static SOM* globalSOM;
 	void resetLabel();
+	float makeResultData(Data& data);
 	void Labeling(float *trainData, int thisLabel);
-	virtual void drawMap() = 0;
-	virtual int learn(float *trainData, int t) = 0;
-	virtual void learnData(Data& data, int t) = 0;
+	virtual void drawMap(Data& data) = 0;
+	virtual float learn(float *trainData, int t) = 0;
+	virtual float learnData(Data& data, int t) = 0;
 	void process(float *inputData);
+	int makeResult(float *inputData);
 	
 protected:
 	int x, y, out, total;
@@ -22,6 +24,6 @@ protected:
 	std::vector<int> output;
 	std::vector<float *> weight;
 	std::vector<int *> label;
-	int subLearn(float *trainData, int dim, int t);
+	float subLearn(float *trainData, int dim, int t);
 	float learning(int i, int winner, int dim, int t);
 };

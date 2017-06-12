@@ -24,10 +24,12 @@
 #include "traindata.h"
 #include <ctime>
 int t;
+float minDistance;
+float correctRate;
 void initialize()
 {
 	srand((unsigned int)time(NULL));
-	new SOM2D(13, 10, 3, 10, 10, 4, 0.01f);
+	new SOM2D(13, 20, 3, 1000, 1000, 0.01f, 3);
 	new	Data("Wine Input.asc", "Wine Desired.asc", 13, 3);
 //	game_set_cell_count(5, 5);
 	t = 1;
@@ -37,11 +39,13 @@ void update(GAMETIME gametime)
 {
 	SOM& som = *SOM::globalSOM;
 	Data& data = *Data::globalData;
-	som.learnData(data, t);
+	//if (t < 20)
+	minDistance = som.learnData(data, t);
 	som.resetLabel();
 	for (unsigned int i = 0; i < data.trainData.size(); i++) {
 		som.Labeling(data.trainData[i]->input, data.trainData[i]->label);
 	}
+	correctRate = som.makeResultData(data);
 	t++;
 }
 
@@ -49,8 +53,11 @@ void draw(GAMETIME gametime)
 {
 	draw_begin();
 	draw_clear(BLACK);
-	SOM::globalSOM->drawMap();
+	SOM::globalSOM->drawMap(*Data::globalData);
 	// TODO: 게임 화면에 출력할 것을 작성.
-	//draw_charc(' ', 2, 2, WHITE, WHITE);	
+	//draw_charc(' ', 2, 2, WHITE, WHITE);
+	draw_string(0, 20, "iteration: %d", t);
+	draw_string(0, 21, "minDistance: %f", minDistance);
+	draw_string(0, 22, "correctRate: %f", correctRate);
 	draw_end();
 }

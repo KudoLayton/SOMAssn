@@ -17,6 +17,11 @@ Data::Data(const char* inputFile, const char* labelFile, int inputNum, int label
 	char buf[BUFSIZ];
 	iStream.getline(buf, BUFSIZ);
 	lStream.getline(buf, BUFSIZ);
+	for (int i = 0; i < labelNum; i++) {
+		trainTotal.push_back(0);
+		valiTotal.push_back(0);
+		testTotal.push_back(0);
+	}
 	while (!iStream.eof()) {
 		float *newInput = new float[inputNum];
 		int newLabel, labelValue;
@@ -32,17 +37,22 @@ Data::Data(const char* inputFile, const char* labelFile, int inputNum, int label
 		somData *newData = new somData(newInput, labelValue);
 		switch (cnt % 3) {
 		case 0:
+			trainTotal[labelValue]++;
 			trainData.push_back(newData);
 			break;
 		case 1:
+			valiTotal[labelValue]++;
 			valiData.push_back(newData);
 			break;
 		case 2:
+			testTotal[labelValue]++;
 			testData.push_back(newData);
 			break;
 		}
 		cnt++;
 	}
+	iStream.close();
+	lStream.close();
 	globalData = this;
 }
 
