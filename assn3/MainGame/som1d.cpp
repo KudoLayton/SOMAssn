@@ -13,8 +13,10 @@ SOM1D::SOM1D(int x, int n, int out, float T1, float T2, float nei, float sig) : 
 }
 
 void SOM1D::drawMap(Data& data) {
-	for (unsigned int i = 0; i < label.size(); i++) {
-		
+	for (int i = 1; i < y; i++) {
+		float* dot1 = weight[i - 1];
+		float* dot2 = weight[i];
+		draw_line(dot1[0] * 10, dot1[1] * 10, dot2[0] * 10, dot2[1] * 10, 2, BLACK, 0);
 	}
 }
 

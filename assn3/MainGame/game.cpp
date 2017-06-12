@@ -14,13 +14,13 @@
  *----------------------------------------------------------*/
 #ifndef JOKEBOX_LEVEL_A
 #define JOKEBOX_LEVEL_A			// TODO: 사용하고자 하는 레벨의 주석을 해제
-//#define JOKEBOX_LEVEL_B
+#define JOKEBOX_LEVEL_B
 #endif
 
 #include "jokebox.h"
 #include "jokeboxhelper.h"
 #include "game.h"
-#include "som2d.h"
+#include "som1d.h"
 #include "traindata.h"
 #include <ctime>
 int t;
@@ -29,9 +29,9 @@ float correctRate;
 void initialize()
 {
 	srand((unsigned int)time(NULL));
-	new SOM2D(13, 20, 3, 1000, 1000, 0.01f, 3);
-	new	Data("Wine Input.asc", "Wine Desired.asc", 13, 3);
-//	game_set_cell_count(5, 5);
+	new SOM1D(2, 400, 1, 1000, 1000, 0.5f, 40);
+	new	Data("H input.txt", "H output.txt", 2, 1);
+	game_set_cell_count(50, 50);
 	t = 1;
 }
 
@@ -52,12 +52,24 @@ void update(GAMETIME gametime)
 void draw(GAMETIME gametime)
 {
 	draw_begin();
-	draw_clear(BLACK);
+	draw_clear(WHITE);
+	draw_line(0, 0, 10, 0, 2, BLUE_VIOLET, 0);
+	draw_line(10, 0, 10, 10, 2, BLUE_VIOLET, 0);
+	draw_line(10, 10, 20, 10, 2, BLUE_VIOLET, 0);
+	draw_line(20, 10, 20, 0, 2, BLUE_VIOLET, 0);
+	draw_line(20, 0, 30, 0, 2, BLUE_VIOLET, 0);
+	draw_line(30, 0, 30, 30, 2, BLUE_VIOLET, 0);
+	draw_line(30, 30, 20, 30, 2, BLUE_VIOLET, 0);
+	draw_line(20, 30, 20, 20, 2, BLUE_VIOLET, 0);
+	draw_line(20, 20, 10, 20, 2, BLUE_VIOLET, 0);
+	draw_line(10, 20, 10, 30, 2, BLUE_VIOLET, 0);
+	draw_line(10, 30, 0, 30, 2, BLUE_VIOLET, 0);
+	draw_line(0, 30, 0, 0, 2, BLUE_VIOLET, 0);
 	SOM::globalSOM->drawMap(*Data::globalData);
 	// TODO: 게임 화면에 출력할 것을 작성.
 	//draw_charc(' ', 2, 2, WHITE, WHITE);
-	draw_string(0, 20, "iteration: %d", t);
-	draw_string(0, 21, "minDistance: %f", minDistance);
-	draw_string(0, 22, "correctRate: %f", correctRate);
+	draw_string(0, 45, "iteration: %d", t);
+	draw_string(0, 46, "minDistance: %f", minDistance);
+	draw_string(0, 47, "correctRate: %f", correctRate);
 	draw_end();
 }

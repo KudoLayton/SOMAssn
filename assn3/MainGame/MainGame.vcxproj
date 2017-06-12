@@ -104,6 +104,7 @@ if exist "$(ProjectDir)Content" xcopy "$(ProjectDir)Content" "$(OutDir)Content" 
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="som.cpp" />
+    <ClCompile Include="som1d.cpp" />
     <ClCompile Include="som2d.cpp" />
     <ClCompile Include="traindata.cpp" />
   </ItemGroup>
@@ -112,6 +113,7 @@ if exist "$(ProjectDir)Content" xcopy "$(ProjectDir)Content" "$(OutDir)Content" 
     <ClInclude Include="jokebox.h" />
     <ClInclude Include="jokeboxhelper.h" />
     <ClInclude Include="som.h" />
+    <ClInclude Include="som1d.h" />
     <ClInclude Include="som2d.h" />
     <ClInclude Include="traindata.h" />
   </ItemGroup>

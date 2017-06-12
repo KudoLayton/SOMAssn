@@ -25,10 +25,21 @@ Data::Data(const char* inputFile, const char* labelFile, int inputNum, int label
 	while (!iStream.eof()) {
 		float *newInput = new float[inputNum];
 		int newLabel, labelValue;
-		for (int i = labelNum - 1; i >= 0; i--) {
+		if (labelNum > 1) {
+			for (int i = labelNum - 1; i >= 0; i--) {
+				lStream >> newLabel;
+				if (newLabel) {
+					labelValue = i;
+				}
+			}
+		}
+		else {
 			lStream >> newLabel;
 			if (newLabel) {
-				labelValue = i;
+				labelValue = 0;
+			}
+			else {
+				labelValue = -1;
 			}
 		}
 		for (int i = 0; i < inputNum; i++) {
@@ -37,15 +48,18 @@ Data::Data(const char* inputFile, const char* labelFile, int inputNum, int label
 		somData *newData = new somData(newInput, labelValue);
 		switch (cnt % 3) {
 		case 0:
-			trainTotal[labelValue]++;
+			if (labelValue >= 0)
+				trainTotal[labelValue]++;
 			trainData.push_back(newData);
 			break;
 		case 1:
-			valiTotal[labelValue]++;
+			if (labelValue >= 0)
+				valiTotal[labelValue]++;
 			valiData.push_back(newData);
 			break;
 		case 2:
-			testTotal[labelValue]++;
+			if (labelValue >= 0)
+				testTotal[labelValue]++;
 			testData.push_back(newData);
 			break;
 		}

@@ -75,7 +75,7 @@ void SOM::process(float *inputData) {
 		for (int j = 0; j < x; j++) {
 			sum += (inputData[j] - thisWeight[j]) * (inputData[j] - thisWeight[j]);
 		}
-		output[i] = sum < 225 ? 1 : 0;
+		output[i] = sum < 0.25 ? 1 : 0;
 		if (i == 0)
 			bestH = sum;
 		else if (sum < bestH) {
